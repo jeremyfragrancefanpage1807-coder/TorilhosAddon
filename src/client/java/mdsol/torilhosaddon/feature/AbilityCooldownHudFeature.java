@@ -21,9 +21,9 @@ public class AbilityCooldownHudFeature extends BaseToggleableFeature {
     private static final int BAR_COLOR_READY = 0xA0FF55FF;
     private static final int BAR_COLOR_BORDER = 0xA0FFFFFF;
     private static final int BAR_COLOR_BG = 0xA0101010;
-    private static final int BAR_WIDTH = 5;
-    private static final int BAR_HEIGHT = 14;
-    private static final int BAR_LEFT_OFFSET = 18;
+    private static final int BAR_WIDTH = 40;
+    private static final int BAR_HEIGHT = 112;
+    private static final int BAR_LEFT_OFFSET = 22;
     private ItemStack trackedAbility = ItemStack.EMPTY;
     private ItemStack displayedAbility = ItemStack.EMPTY;
     private float cooldownProgress = 0;
@@ -70,9 +70,9 @@ public class AbilityCooldownHudFeature extends BaseToggleableFeature {
 
         var windowWidth = context.getScaledWindowWidth();
         var windowHeight = context.getScaledWindowHeight();
-        var halfWindowWidth = windowWidth / 2;
-        var halfWindowHeight = windowHeight / 2;
-        var barTopOffset = BAR_HEIGHT / -2;
+        var halfWindowWidth = windowWidth / 4;
+        var halfWindowHeight = windowHeight / 4;
+        var barTopOffset = BAR_HEIGHT / -4;
         var barColor = cooldownProgress > 0 ? BAR_COLOR_COOLING_DOWN : BAR_COLOR_READY;
         var scaledHeight = MathHelper.ceil((BAR_HEIGHT - 2) * cooldownProgress);
         var x1 = BAR_LEFT_OFFSET + halfWindowWidth;
@@ -80,10 +80,10 @@ public class AbilityCooldownHudFeature extends BaseToggleableFeature {
 
         context.drawBorder(x1, y1, BAR_WIDTH, BAR_HEIGHT, BAR_COLOR_BORDER);
 
-        var x2 = x1 + BAR_WIDTH - 1;
-        var y2 = y1 + BAR_HEIGHT - 1;
-        x1 += 1;
-        y1 += 1;
+        var x2 = x1 + BAR_WIDTH - 2;
+        var y2 = y1 + BAR_HEIGHT - 2;
+        x1 += 2;
+        y1 += 2;
 
         context.fill(x1, y1, x2, y2, BAR_COLOR_BG);
         context.fill(x1, y1 + scaledHeight, x2, y2, barColor);
